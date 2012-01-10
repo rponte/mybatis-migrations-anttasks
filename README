@@ -1,0 +1,23 @@
+MYBATIS MIGRATIONS ANT TASKS
+--------------------------------------------------------------------------------
+
+* It's an Ant Script to MyBatis Migrations' commands (and other common shortcuts) just to make the developer's life easier;
+* Actually there're only theses tasks:
+	=> db:migrate:init
+		- Creates (if necessary) and initializes a migration path.
+	=> db:migrate:new
+		- Creates a new migration with the provided description.
+	=> db:migrate:bootstrap
+		- Runs the bootstrap SQL script (see scripts/bootstrap.sql for more).
+	=> db:migrate:status
+		- Prints the changelog from the database if the changelog table exists.
+	=> db:migrate:up
+		- Run all unapplied migrations.
+	=> db:migrate:down
+		- Undoes the last migration applied to the database.
+	=> db:migrate:setup
+		- Runs both tasks db:migrate:bootstrap and db:migrate:up.
+		
+* More informations about MyBatis Migrations
+http://www.mybatis.org/java.html
+http://code.google.com/p/mybatis/
