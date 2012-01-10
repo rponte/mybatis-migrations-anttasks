@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyBatis Migrations" basedir="." default="db:migrate:status">
+
+	<property file="build.properties" />
+	<condition property="environment" value="${ENV}" else="${default.environment}">
+		<isset property="ENV" />
+	</condition>
+	<property file="${env.dir}/${environment}.properties" />
+	
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<path id="drivers-classpath">
+		<fileset dir="${drivers.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	
+	<!-- Create migrate task -->
+	<macrodef name="migrate">
+		<attribute name="command" />
+		<attribute name="environment" default="${default.environment}" />
+		<attribute name="path" default="${repository.dir}" />
+		<element name="extraarguments" optional="true" />
+		<sequential>
+			<echo>** Executing "migrate @{command}" on "@{environment}" environment **</echo>
+			<java classname="org.apache.ibatis.migration.Migrator"
+				failonerror="true" fork="true" classpathref="classpath">
+				<sysproperty key="file.encoding" value="UTF-8"/>
+				<arg value="@{command}" />
+				<arg value="--env=@{environment}" />
+				<arg value="--path=@{path}" />
+				<extraarguments />
+			</java>
+		</sequential>
+	</macrodef>
+
+	<!-- Simulate the command: -->
+	<!-- $ migrate init -->
+	<target name="db:migrate:init">
+		<migrate command="init" path="${repository.dir}" />
+	</target>
+	
+	<!-- Simulate the command: -->
+	<!-- $ migrate new <description> -->
+	<target name="db:migrate:new">
+		<input addproperty="description" message="Description of the new migration:" />
+		<migrate command="new" environment="${environment}" path="${repository.dir}" >
+			<extraarguments>
+				<arg value="${description}" />
+			</extraarguments>
+		</migrate>
+	</target>
+	
+	<!-- Simulate the command: -->
+	<!-- $ migrate bootstrap -->
+	<target name="db:migrate:bootstrap">
+		<migrate command="bootstrap" environment="${environment}" path="${repository.dir}" />
+	</target>
+
+	<!-- Simulate the command: -->
+	<!-- $ migrate status -->
+	<target name="db:migrate:status">
+		<migrate command="status" environment="${environment}" />
+	</target>
+
+	<!-- Simulate the command: -->
+	<!-- $ migrate up -->
+	<target name="db:migrate:up">
+		<migrate command="up" environment="${environment}" />
+	</target>
+
+	<!-- Simulate the command: -->
+	<!-- $ migrate down -->
+	<target name="db:migrate:down">
+		<migrate command="down" environment="${environment}" />
+	</target>
+	
+	<!-- Execute both tasks db:migrate:bootstrap and db:migrate:up -->
+	<target name="db:migrate:setup" depends="db:migrate:bootstrap, db:migrate:up">
+	</target>
+
+</project>
