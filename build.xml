@@ -18,7 +18,7 @@
 		</fileset>
 	</path>
 	
-	<!-- Create migrate task -->
+	<!-- Creates migrate task -->
 	<macrodef name="migrate">
 		<attribute name="command" />
 		<attribute name="environment" default="${default.environment}" />
@@ -37,13 +37,13 @@
 		</sequential>
 	</macrodef>
 
-	<!-- Simulate the command: -->
+	<!-- Simulates the command: -->
 	<!-- $ migrate init -->
 	<target name="db:migrate:init">
 		<migrate command="init" path="${repository.dir}" />
 	</target>
 	
-	<!-- Simulate the command: -->
+	<!-- Simulates the command: -->
 	<!-- $ migrate new <description> -->
 	<target name="db:migrate:new">
 		<input addproperty="description" message="Description of the new migration:" />
@@ -54,31 +54,31 @@
 		</migrate>
 	</target>
 	
-	<!-- Simulate the command: -->
+	<!-- Simulates the command: -->
 	<!-- $ migrate bootstrap -->
 	<target name="db:migrate:bootstrap">
 		<migrate command="bootstrap" environment="${environment}" path="${repository.dir}" />
 	</target>
 
-	<!-- Simulate the command: -->
+	<!-- Simulates the command: -->
 	<!-- $ migrate status -->
 	<target name="db:migrate:status">
 		<migrate command="status" environment="${environment}" />
 	</target>
 
-	<!-- Simulate the command: -->
+	<!-- Simulates the command: -->
 	<!-- $ migrate up -->
 	<target name="db:migrate:up">
 		<migrate command="up" environment="${environment}" />
 	</target>
 
-	<!-- Simulate the command: -->
+	<!-- Simulates the command: -->
 	<!-- $ migrate down -->
 	<target name="db:migrate:down">
 		<migrate command="down" environment="${environment}" />
 	</target>
 	
-	<!-- Execute both tasks db:migrate:bootstrap and db:migrate:up -->
+	<!-- Runs both tasks db:migrate:bootstrap and db:migrate:up -->
 	<target name="db:migrate:setup" depends="db:migrate:bootstrap, db:migrate:up">
 	</target>
 
