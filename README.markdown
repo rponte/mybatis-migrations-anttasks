@@ -20,6 +20,8 @@ Actually there're only these tasks:
 - `db:migrate:setup`
 	* Runs both tasks `db:migrate:bootstrap` and `db:migrate:up`.
 
+##### Changing the environment
+
 It's possible to specify what environment to use for the migration, just use the ENV argument when running a task:
 
 		$ ant db:migrate:status -DENV=production 
