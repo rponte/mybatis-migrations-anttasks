@@ -5,25 +5,19 @@ It's an Ant Script to MyBatis Migrations' commands (and other common shortcuts) 
 Actually there're only these tasks:
 
 `db:migrate:init`
- - Creates (if necessary) and initializes a migration path.
- 
+Creates (if necessary) and initializes a migration path.
 `db:migrate:new`
- - Creates a new migration with the provided description.
- 
+Creates a new migration with the provided description.
 `db:migrate:bootstrap`
- - Runs the bootstrap SQL script (see scripts/bootstrap.sql for more).
- 
+Runs the bootstrap SQL script (see scripts/bootstrap.sql for more).
 `db:migrate:status`
- - Prints the changelog from the database if the changelog table exists.
- 
+Prints the changelog from the database if the changelog table exists.
 `db:migrate:up`
- - Run all unapplied migrations.
- 
+Run all unapplied migrations.
 `db:migrate:down`
- - Undoes the last migration applied to the database.
- 
+Undoes the last migration applied to the database.
 `db:migrate:setup`
- - Runs both tasks db:migrate:bootstrap and db:migrate:up.
+Runs both tasks db:migrate:bootstrap and db:migrate:up.
 
 It's possible to specify what environment to use for the migration, just use the ENV argument when running a task:
 
