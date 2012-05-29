@@ -24,7 +24,7 @@ Actually there're only these tasks:
 
 Changing the environment
 -----------------------------------------------------------------
-It's possible to specify what environment to use for the migration, just use the `ENV` argument when running a task:
+The default environment is `development`, but it's possible to specify what environment to use for the migration, just use the `ENV` argument when running a task:
 
 		$ ant db:migrate:status -DENV=production 
 		
