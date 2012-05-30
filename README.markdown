@@ -26,7 +26,7 @@ Changing the environment
 -----------------------------------------------------------------
 The default environment is `development` but you may change it through `build.properties` file, just change the property `default.environment` for the one you want to.
 
-it's also possible to specify what environment to use for the migration, just use the `ENV` argument when running a task:
+it's also possible to specify what environment to use for the migration through command line, just use the `ENV` argument when running a task:
 
 		$ ant db:migrate:status -DENV=production 
 		
