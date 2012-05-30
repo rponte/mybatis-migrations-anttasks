@@ -3,6 +3,8 @@ MYBATIS MIGRATIONS ANT TASKS
 
 It's an Ant Script to MyBatis Migrations' commands (and other common shortcuts) just to make the developer's life easier.
 
+The names of the tasks are following the style of Ruby On Rails Migrations.
+
 Tasks
 -------------
 Actually there're only these tasks:
@@ -26,7 +28,7 @@ Changing the environment
 -----------------------------------------------------------------
 The default environment is `development` but you may change it through `build.properties` file, just change the property `default.environment` for the one you want to.
 
-it's also possible to specify what environment to use for the migration through command line, just use the `ENV` argument when running a task:
+It's also possible to specify what environment to use for the migration through command line, just use the `ENV` argument when running a task:
 
 		$ ant db:migrate:status -DENV=production 
 		
