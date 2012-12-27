@@ -19,6 +19,8 @@ Actually there're only these tasks:
 	* Prints the changelog from the database if the changelog table exists.
 - `db:migrate:up`
 	* Run all unapplied migrations.
+- `db:migrate:up:force`
+	* Run all unapplied migrations and forces script to continue even if SQL errors are encountered.
 - `db:migrate:down`
 	* Undoes the last migration applied to the database.
 - `db:migrate:setup`

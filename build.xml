@@ -73,6 +73,16 @@
 	</target>
 
 	<!-- Simulates the command: -->
+	<!-- $ migrate up -force -->
+	<target name="db:migrate:up:force">
+		<migrate command="up" environment="${environment}">
+			<extraarguments>
+				<arg value="--force" />
+			</extraarguments>
+		</migrate>
+	</target>
+
+	<!-- Simulates the command: -->
 	<!-- $ migrate down -->
 	<target name="db:migrate:down">
 		<migrate command="down" environment="${environment}" />
