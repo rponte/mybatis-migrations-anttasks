@@ -18,7 +18,7 @@ When the command is completed, the directory **`./db`** will be created containi
 - `./drivers`
 	* Place your JDBC driver .jar or .zip files in this directory. Upon running a migration, the drivers will be dynamically loaded.
 - `./environments`
-	* In the environments folder you will find .properties files that represent your database instances. By default a **development.properties** file is created for you to configure your development time database properties. You can also create `test.properties` and `production.properties` files.
+	* In the environments folder you will find .properties files that represent your database instances. By default a **development.properties** file is created for you to configure your development time database properties. You can also create `test.properties` and `production.properties` files. The properties file is self documented.
 - `./scripts`
 	* This directory contains your migration SQL files. These are the files that contain your DDL to both upgrade and downgrade your database structure. By default, the directory will contain the script to create the **changelog** table, plus one empty example migration script. 
 
