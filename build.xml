@@ -2,18 +2,18 @@
 <project name="MyBatis Migrations" basedir="." default="db:migrate:status">
 
 	<property file="build.properties" />
-	<condition property="environment" value="${ENV}" else="${default.environment}">
+	<condition property="environment" value="${ENV}" else="${mybatis.default.environment}">
 		<isset property="ENV" />
 	</condition>
-	<property file="${env.dir}/${environment}.properties" />
+	<property file="${mybatis.env.dir}/${environment}.properties" />
 	
-	<path id="classpath">
-		<fileset dir="${lib.dir}">
+	<path id="mybatis-classpath">
+		<fileset dir="${mybatis.lib.dir}">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
-	<path id="drivers-classpath">
-		<fileset dir="${drivers.dir}">
+	<path id="mybatis-drivers-classpath">
+		<fileset dir="${mybatis.drivers.dir}">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
@@ -21,13 +21,13 @@
 	<!-- Creates migrate task -->
 	<macrodef name="migrate">
 		<attribute name="command" />
-		<attribute name="environment" default="${default.environment}" />
-		<attribute name="path" default="${repository.dir}" />
+		<attribute name="environment" default="${mybatis.default.environment}" />
+		<attribute name="path" default="${mybatis.repository.dir}" />
 		<element name="extraarguments" optional="true" />
 		<sequential>
 			<echo>** Executing "migrate @{command}" on "@{environment}" environment **</echo>
 			<java classname="org.apache.ibatis.migration.Migrator"
-				failonerror="true" fork="true" classpathref="classpath">
+				failonerror="true" fork="true" classpathref="mybatis-classpath">
 				<sysproperty key="file.encoding" value="UTF-8"/>
 				<arg value="@{command}" />
 				<arg value="--env=@{environment}" />
@@ -40,14 +40,14 @@
 	<!-- Simulates the command: -->
 	<!-- $ migrate init -->
 	<target name="db:migrate:init">
-		<migrate command="init" path="${repository.dir}" />
+		<migrate command="init" path="${mybatis.repository.dir}" />
 	</target>
 	
 	<!-- Simulates the command: -->
 	<!-- $ migrate new <description> -->
 	<target name="db:migrate:new">
 		<input addproperty="description" message="Description of the new migration:" />
-		<migrate command="new" environment="${environment}" path="${repository.dir}" >
+		<migrate command="new" environment="${environment}" path="${mybatis.repository.dir}" >
 			<extraarguments>
 				<arg value="${description}" />
 			</extraarguments>
@@ -57,7 +57,7 @@
 	<!-- Simulates the command: -->
 	<!-- $ migrate bootstrap -->
 	<target name="db:migrate:bootstrap">
-		<migrate command="bootstrap" environment="${environment}" path="${repository.dir}" />
+		<migrate command="bootstrap" environment="${environment}" path="${mybatis.repository.dir}" />
 	</target>
 
 	<!-- Simulates the command: -->
