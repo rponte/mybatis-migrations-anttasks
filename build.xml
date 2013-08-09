@@ -39,13 +39,13 @@
 
 	<!-- Simulates the command: -->
 	<!-- $ migrate init -->
-	<target name="db:migrate:init">
+	<target name="db:migrate:init" description="Creates (if necessary) and initializes a migration path">
 		<migrate command="init" path="${mybatis.repository.dir}" />
 	</target>
 	
 	<!-- Simulates the command: -->
 	<!-- $ migrate new <description> -->
-	<target name="db:migrate:new">
+	<target name="db:migrate:new" description="Creates a new migration with the provided description">
 		<input addproperty="description" message="Description of the new migration:" />
 		<migrate command="new" environment="${environment}" path="${mybatis.repository.dir}" >
 			<extraarguments>
@@ -56,25 +56,25 @@
 	
 	<!-- Simulates the command: -->
 	<!-- $ migrate bootstrap -->
-	<target name="db:migrate:bootstrap">
+	<target name="db:migrate:bootstrap" description="Runs the bootstrap SQL script (see scripts/bootstrap.sql for more)">
 		<migrate command="bootstrap" environment="${environment}" path="${mybatis.repository.dir}" />
 	</target>
 
 	<!-- Simulates the command: -->
 	<!-- $ migrate status -->
-	<target name="db:migrate:status">
+	<target name="db:migrate:status" description="Prints the changelog from the database if the changelog table exists">
 		<migrate command="status" environment="${environment}" />
 	</target>
 
 	<!-- Simulates the command: -->
 	<!-- $ migrate up -->
-	<target name="db:migrate:up">
+	<target name="db:migrate:up" description="Run all unapplied migrations">
 		<migrate command="up" environment="${environment}" />
 	</target>
 
 	<!-- Simulates the command: -->
 	<!-- $ migrate up -force -->
-	<target name="db:migrate:up:force">
+	<target name="db:migrate:up:force" description="Run all unapplied migrations and forces script to continue even if SQL errors are encountered">
 		<migrate command="up" environment="${environment}">
 			<extraarguments>
 				<arg value="--force" />
@@ -84,12 +84,12 @@
 
 	<!-- Simulates the command: -->
 	<!-- $ migrate down -->
-	<target name="db:migrate:down">
+	<target name="db:migrate:down" description="Undoes the last migration applied to the database">
 		<migrate command="down" environment="${environment}" />
 	</target>
 	
 	<!-- Runs both tasks db:migrate:bootstrap and db:migrate:up -->
-	<target name="db:migrate:setup" depends="db:migrate:bootstrap, db:migrate:up">
+	<target name="db:migrate:setup" depends="db:migrate:bootstrap, db:migrate:up" description="Runs both tasks db:migrate:bootstrap and db:migrate:up">
 	</target>
 
 </project>
