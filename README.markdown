@@ -10,8 +10,9 @@ How to Install
 After downloading or cloning this repository you just need to copy 3 artifacts to your project, `build.xml`, `build.properties` and `mybatis-migrations` directory.
 
 You'll need to run this task to prepare the MyBatis structure within your project:
-
-		$ ant db:migrate:init
+```BASH
+$ ant db:migrate:init
+```
 
 When the command is completed, the directory **`./db`** will be created containing the following sub-directories:
 
@@ -50,9 +51,10 @@ Changing the environment
 The default environment is `development` but you may change it through `build.properties` file, just change the property `default.environment` for the one you want to.
 
 It's also possible to specify what environment to use for the migration through command line, just use the `ENV` argument when running a task:
+```BASH
+$ ant db:migrate:status -DENV=production 
+```
 
-		$ ant db:migrate:status -DENV=production 
-		
 More informations about MyBatis Migrations
 --------------------------------------------
 
